@@ -1,0 +1,166 @@
+:root {
+  font-size: 16px;
+  --token-font: Georgia, 'Times New Roman', Times, serif;
+  --interface-font: Arial, Helvetica, sans-serif;
+}
+
+.narrow-screen {
+  display: none !important;
+}
+
+@media screen and (max-width: 413px) {
+  .wide-screen {
+    display: none !important;
+  }
+  .narrow-screen {
+    display: flex !important;
+  }
+}
+
+html,
+body,
+main {
+  height: 100%;
+  width: 100%;
+}
+
+main {
+  overflow-y: scroll;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  font-family: var(--interface-font);
+}
+
+#tic-tac-toe {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
+}
+
+#tic-tac-toe h1 {
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
+  align-items: center;
+  font-size: 1.75rem;
+  margin: 0;
+}
+
+.scroll-container {
+  max-width: 100vw;
+  max-height: 80vh;
+  overflow: scroll;
+}
+
+@media screen and (max-width: 413px) {
+  .scroll-container {
+    max-height: 70vh;
+  }
+}
+
+.game-grid {
+  display: grid;
+  aspect-ratio: 1 / 1;
+  gap: 1rem;
+  margin: 0;
+  padding: 0;
+}
+
+.game-grid .game-grid-cell {
+  aspect-ratio: 1 / 1;
+  height: 3.75rem;
+  padding: 0;
+  list-style: none;
+  line-height: 3.75rem;
+  text-align: center;
+  font-family: var(--token-font);
+  font-size: 2.5rem;
+  color: #ccc;
+}
+
+.game-grid .game-grid-cell.already-selected {
+  text-transform: uppercase;
+  font-size: 1.875rem;
+  color: #ffffff;
+}
+
+.game-grid .game-grid-cell.reject-pressing.x,
+.game-grid .game-grid-cell.reject-pressing.o {
+  color: #ffffffaa;
+}
+
+.game-grid .game-grid-cell.reject-pressing:not(.x):not(.o) {
+  color: #cccccc88;
+}
+
+.game-grid .game-grid-cell:active {
+  background: none;
+  color: #cdcdcd;
+}
+
+.interface {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  gap: 1rem;
+}
+
+.interface .whose-turn {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-content: center;
+  aspect-ratio: 1 / 1;
+  text-align: center;
+  font-weight: bolder;
+  opacity: 1;
+}
+
+.interface .whose-turn .player-turn {
+}
+.interface .whose-turn .player-token {
+  font-family: var(--token-font);
+  font-size: 2rem;
+  line-height: 2rem;
+}
+
+.interface .results {
+  display: flex;
+  flex-direction: column;
+  width: fit-content;
+}
+
+.interface .results .input-append .win-text {
+  min-width: 2rem;
+}
+
+.results .input-append .add-on {
+  min-width: 3.5rem;
+}
+
+.interface .results .input-append .win-times {
+  background: #fff;
+  min-width: 3.5rem;
+}
+
+.interface .results .input-append .add-on,
+.results .input-prepend .add-on {
+  font-weight: bolder;
+}
+.interface .results .input-append.input-prepend:last-of-type {
+  margin-bottom: 0;
+}
+
+.interface .reset {
+  display: flex;
+  align-items: center;
+  padding: 0.3125rem 0.625rem;
+  color: #fff;
+  font-size: 1.25rem;
+  clear: both;
+  cursor: pointer;
+  text-align: center;
+  outline: none;
+}

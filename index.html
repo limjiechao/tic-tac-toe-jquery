@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="favicon.svg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      rel="stylesheet prefetch"
+      href="https://getbootstrap.com/2.3.2/assets/css/bootstrap.css"
+    />
+    <title>Tic Tac Toe game</title>
+  </head>
+  <body>
+    <main>
+      <div id="tic-tac-toe">
+        <h1>
+          Tic Tac Toe<button id="set-grid-button" class="btn btn-secondary">
+            Grid size
+          </button>
+        </h1>
+
+        <div class="interface">
+          <div class="wide-screen whose-turn disabled btn btn-info">
+            <div class="player-turn">Your&nbsp;turn</div>
+            <div class="player-token">X</div>
+          </div>
+
+          <div class="results">
+            <div class="input-prepend input-append">
+              <span class="add-on win-text">X</span
+              ><strong id="x-win" class="win-times add-on">0</strong
+              ><span class="add-on">time<span class="plural x">s</span></span>
+            </div>
+            <div class="input-prepend input-append">
+              <span class="add-on win-text">O</span
+              ><strong id="o-win" class="win-times add-on">0</strong
+              ><span class="add-on">time<span class="plural o">s</span></span>
+            </div>
+          </div>
+
+          <button type="button" class="wide-screen reset btn-success btn">
+            Restart
+          </button>
+        </div>
+
+        <div class="narrow-screen interface">
+          <div class="whose-turn disabled btn btn-info">
+            <div class="player-turn">Your&nbsp;turn</div>
+            <div class="player-token">X</div>
+          </div>
+
+          <button type="button" class="reset btn-success btn">Restart</button>
+        </div>
+
+        <div class="scroll-container">
+          <ul class="game-grid" id="game"></ul>
+        </div>
+      </div>
+    </main>
+    <script type="module" src="/src/main.ts"></script>
+  </body>
+</html>
