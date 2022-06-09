@@ -164,3 +164,22 @@ main {
   text-align: center;
   outline: none;
 }
+
+@media screen and (prefers-color-scheme: dark) {
+  body {
+    background-color: #444444;
+  }
+
+  #tic-tac-toe h1 {
+    color: white;
+  }
+
+  .game-grid .game-grid-cell {
+    color: #999999;
+  }
+
+  .game-grid .game-grid-cell:active {
+    background: #666666;
+    color: #dddddd;
+  }
+}
