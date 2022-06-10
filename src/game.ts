@@ -2,7 +2,7 @@ import $ from 'jquery';
 import elements from './elements';
 import { Player, PlayerCssClass } from './types';
 import { Combinations, populateGridAndElementSelectors } from './grid.helpers';
-import { delay } from './utils';
+import { delay, Guard } from './utils';
 
 // Core game state and logic
 export default {
@@ -80,6 +80,11 @@ export default {
 
     populateGridAndElementSelectors(gridSize);
   },
+  // Handle pre-turn checks
+  alertAndGuard(alertMessage: string, guardMessage: string): void {
+    alert(alertMessage);
+    throw new Guard(guardMessage);
+  },
   // Handle turn of play
   renderWhoseTurnToPlay(): void {
     elements.turnDisplay.removeClass(PlayerCssClass[this.previousPlayer]);
@@ -102,18 +107,21 @@ export default {
     this._wins[this.currentPlayer]++;
   },
   renderTimeOrTimesForCurrentPlayer(): void {
-    if (this.currentPlayerWins === 1) {
-      elements.spans[`${this.currentPlayer}Plural`].css('display', 'none');
-    } else {
-      elements.spans[`${this.currentPlayer}Plural`].css('display', '');
-    }
+    elements.spans[`${this.currentPlayer}Plural`].css(
+      'display',
+      this.currentPlayerWins === 1 ? 'none' : ''
+    );
   },
   renderWinsForCurrentPlayer(): void {
     elements.spans[`${this.currentPlayer}Win`].text(this.currentPlayerWins);
   },
-  async rejectPressingAndAlertPlayers(message: string) {
+  async rejectPressingAndAlertPlayers(
+    alertMessage: string,
+    guardMessage: string
+  ) {
     elements.cells.addClass('reject-pressing');
-    await delay(100);
-    alert(message);
+    await delay(300);
+    alert(alertMessage);
+    throw new Guard(guardMessage);
   },
 };

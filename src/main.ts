@@ -4,25 +4,28 @@ import elements from './elements';
 import game from './game';
 import { Guard } from './utils';
 
-// Orchestrate game progresion
+// ============================
+// Orchestrate game progression
+// ============================
+
 const handlePreTurnChecks = (cellElement: HTMLLIElement) => {
   // Guard against any completed game whether with a winner or a tie
   if (game.currentPlayerHasWon || game.completedAllTurns) {
-    alert('Previous game has ended.\n\nStarting a new game!');
     game.reset();
-    throw new Guard('Previous game has ended');
+    game.alertAndGuard(
+      'Previous game has ended.\n\nStarting a new game!',
+      'Previous game has ended'
+    );
   }
 
   // Guard against pressing any cell which has already been played
   if ($(cellElement).hasClass('already-selected')) {
-    alert('Cell is already selected');
-    throw new Guard('Cell already selected');
+    game.alertAndGuard('Cell is already selected', 'Cell already selected');
   }
 
   // Guard against pressing any cell just before current game completes
   if ($(cellElement).hasClass('reject-pressing')) {
-    alert('This game is over!');
-    throw new Guard('Current game is over');
+    game.alertAndGuard('This game is over!', 'Current game is over');
   }
 };
 
@@ -40,7 +43,8 @@ const handlePostTurnChecks = async () => {
     game.renderWinsForCurrentPlayer();
 
     await game.rejectPressingAndAlertPlayers(
-      `Player ${game.currentPlayer.toUpperCase()} wins!`
+      `Player ${game.currentPlayer.toUpperCase()} wins!`,
+      'Current player has won this game'
     );
   }
 
@@ -50,11 +54,17 @@ const handlePostTurnChecks = async () => {
     !game.previousPlayerHasWon &&
     game.completedAllTurns
   ) {
-    await game.rejectPressingAndAlertPlayers("That was tough! It's a tie!");
+    await game.rejectPressingAndAlertPlayers(
+      "That was tough! It's a tie!",
+      'Current game is a tie'
+    );
   }
 };
 
+// =====================================
 // Add event handlers to event listeners
+// =====================================
+
 const listenAndHandleGridCellClick = () => {
   elements.cells.on('click', async function () {
     try {
@@ -83,7 +93,10 @@ const listenAndHandleSetGridButtonClick = () => {
   });
 };
 
+// ================================
 // Initialization on document ready
+// ================================
+
 $(function () {
   game.initializeGrid();
   listenAndHandleGridCellClick();
