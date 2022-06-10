@@ -84,31 +84,31 @@ main {
   line-height: 2rem;
 }
 
-.interface .results {
+.interface .scores {
   display: flex;
   flex-direction: column;
   width: fit-content;
 }
 
-.results .input-append .add-on {
+.interface .scores .input-append .add-on {
   min-width: 3.5rem;
 }
 
-.interface .results .input-append .win-text {
+.interface .scores .input-append .win-text {
   min-width: 2rem;
 }
 
-.interface .results .input-append .win-times {
+.interface .scores .input-append .win-times {
   background: #fff;
   min-width: 3.5rem;
 }
 
-.interface .results .input-append .add-on,
-.results .input-prepend .add-on {
+.interface .scores .input-append .add-on,
+.interface .scores .input-prepend .add-on {
   font-weight: bolder;
 }
 
-.interface .results .input-append.input-prepend:last-of-type {
+.interface .scores .input-append.input-prepend:last-of-type {
   margin-bottom: 0;
 }
 
